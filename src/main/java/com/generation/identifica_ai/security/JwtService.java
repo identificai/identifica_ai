@@ -15,10 +15,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-@Component
-public class JwtService {
+@Component // anotação publica, que pode ser istanciada ou injeção de dependencia
+public class JwtService { //basicamente classe que gera o token
 
-    public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+    public static final String SECRET = "0d8d0acc4120e43740311a9025138318ab4b077079b3afc525d267713860c4f9";
 
     private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);

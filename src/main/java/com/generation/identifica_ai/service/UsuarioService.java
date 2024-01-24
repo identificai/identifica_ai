@@ -30,7 +30,7 @@ public class UsuarioService {
 
     public Optional<Usuarios> cadastrarUsuario(Usuarios usuario) {
 
-        if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
             return Optional.empty();
 
         usuario.setSenha(criptografarSenha(usuario.getSenha()));
@@ -43,7 +43,7 @@ public class UsuarioService {
 
         if(usuarioRepository.findById(usuario.getId()).isPresent()) {
 
-            Optional<Usuarios> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
+            Optional<Usuarios> buscaUsuario = usuarioRepository.findByEmail(usuario.getEmail());
 
             if ( (buscaUsuario.isPresent()) && ( buscaUsuario.get().getId() != usuario.getId()))
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
@@ -61,7 +61,7 @@ public class UsuarioService {
     public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 
         // Gera o Objeto de autenticação
-        var credenciais = new UsernamePasswordAuthenticationToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha());
+        var credenciais = new UsernamePasswordAuthenticationToken(usuarioLogin.get().getEmail(), usuarioLogin.get().getSenha());
 
         // Autentica o Usuario
         Authentication authentication = authenticationManager.authenticate(credenciais);
@@ -70,7 +70,7 @@ public class UsuarioService {
         if (authentication.isAuthenticated()) {
 
             // Busca os dados do usuário
-            Optional<Usuarios> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
+            Optional<Usuarios> usuario = usuarioRepository.findByEmail(usuarioLogin.get().getEmail());
 
             // Se o usuário foi encontrado
             if (usuario.isPresent()) {
@@ -79,8 +79,9 @@ public class UsuarioService {
                 usuarioLogin.get().setId(usuario.get().getId());
                 usuarioLogin.get().setNome(usuario.get().getNome());
                 usuarioLogin.get().setFoto(usuario.get().getFoto());
-                usuarioLogin.get().setToken(gerarToken(usuarioLogin.get().getUsuario()));
+                usuarioLogin.get().setToken(gerarToken(usuarioLogin.get().getEmail()));
                 usuarioLogin.get().setSenha("");
+                usuarioLogin.get().setTipo(usuario.get().getTipo());
 
                 // Retorna o Objeto preenchido
                 return usuarioLogin;
