@@ -8,6 +8,6 @@ import com.generation.identifica_ai.model.Usuarios;
 
 public interface UsuarioRepository extends JpaRepository<Usuarios, Long>{
 
-	public Optional<Usuarios> findByUsuario(String email);
+	public Optional<Usuarios> findByUsuario(String usuario);
 	
 }

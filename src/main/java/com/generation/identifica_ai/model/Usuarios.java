@@ -32,7 +32,7 @@ public class Usuario {
 	@Schema(example = "email@email.com.br")
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
-	private String email;
+	private String usuario;
 
 	@NotBlank(message = "O Atributo Senha é Obrigatório!")
 	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
@@ -52,9 +52,9 @@ public class Usuario {
 		
 		
 
-	public Usuarios(Long id, String email, String tipo, String nome, String senha, String foto) {
+	public Usuarios(Long id, String usuario, String tipo, String nome, String senha, String foto) {
 		this.id = id;
-		this.email = email;
+		this.usuario = usuario;
 		this.tipo = tipo;
 		this.nome = nome;
 		this.senha = senha;
@@ -75,11 +75,11 @@ public class Usuario {
 		}
 
 	public String getUsuario() {
-		return email;
+		return usuario;
 		}
 
-	public void setUsuario(String email) {
-		this.email = email;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 		}
 
 	public String getTipo() {
