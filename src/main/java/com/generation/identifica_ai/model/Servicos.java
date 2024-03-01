@@ -44,6 +44,10 @@ public class Servicos {
 	@ManyToOne
 	@JsonIgnoreProperties("servicos")
 	private Categorias categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("servicos")
+	private Usuarios usuario;
 
 	/**
 	 * @return the id
@@ -156,6 +160,15 @@ public class Servicos {
 	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
 	}
+
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+	
 	
 	
 
