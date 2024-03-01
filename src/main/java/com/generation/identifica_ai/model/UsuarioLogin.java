@@ -3,7 +3,7 @@ package com.generation.identifica_ai.model;
 public class UsuarioLogin {
 	
 	private Long id;
-	private String usuario;
+	private String email;
 	private String tipo;
 	private String nome;
 	private String senha;
@@ -27,11 +27,11 @@ public class UsuarioLogin {
 	}
 
 	public String getUsuario() {
-		return this.usuario;
+		return this.email;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsuario(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
