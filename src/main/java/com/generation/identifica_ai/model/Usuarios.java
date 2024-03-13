@@ -51,6 +51,10 @@ import jakarta.validation.constraints.Size;
 		@JsonIgnoreProperties("usuario")
 		private List<Servicos> servicos;
 		
+		@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+		@JsonIgnoreProperties("usuario")
+		private List<Agendamentos> agendamentos;
+		
 		
 
 		public Usuarios(Long id, String usuario, String tipo, String nome, String senha, String foto) {
@@ -121,6 +125,14 @@ import jakarta.validation.constraints.Size;
 
 		public void setServicos(List<Servicos> servicos) {
 			this.servicos = servicos;
+		}
+
+		public List<Agendamentos> getAgendamentos() {
+			return agendamentos;
+		}
+
+		public void setAgendamentos(List<Agendamentos> agendamentos) {
+			this.agendamentos = agendamentos;
 		}
 		
 		

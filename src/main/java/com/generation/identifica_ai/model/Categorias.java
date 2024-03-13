@@ -35,6 +35,7 @@ public class Categorias {
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Servicos> servicos;
+	
 
 	public Long getId() {
 		return id;
@@ -72,6 +73,6 @@ public class Categorias {
 	 */
 	public void setServicos(List<Servicos> servicos) {
 		this.servicos = servicos;
-	}	
+	}
 
 }
