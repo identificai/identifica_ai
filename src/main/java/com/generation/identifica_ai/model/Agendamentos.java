@@ -35,6 +35,10 @@ public class Agendamentos {
 	@ManyToOne
 	@JsonIgnoreProperties("agendamentos")
 	private Usuarios usuario;
+	
+	@ManyToOne
+    @JsonIgnoreProperties("agendamentos")
+    private Servicos servico;
 
 	public Long getId() {
 		return id;
@@ -68,5 +72,14 @@ public class Agendamentos {
 		this.usuario = usuario;
 	}
 
+	public Servicos getServico() {
+		return servico;
+	}
+
+	public void setServico(Servicos servico) {
+		this.servico = servico;
+	}
+
+	
 	
 }

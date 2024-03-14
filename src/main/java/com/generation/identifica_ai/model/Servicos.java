@@ -53,6 +53,8 @@ public class Servicos {
 	@JsonIgnoreProperties("servicos")
 	private Usuarios usuario;
 	
+	@OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Agendamentos> agendamentos;
 
 	/**
 	 * @return the id
